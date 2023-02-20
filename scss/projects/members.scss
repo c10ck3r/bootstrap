@@ -1,3 +1,6 @@
+$enable-grid-classes: false;
+$enable-cssgrid: true;
+
 @import "../mixins/banner";
 @include bsBanner("");
 
@@ -5,10 +8,6 @@
 // scss-docs-start import-stack
 // Configuration
 @import "../functions";
-
-$enable-grid-classes: false;
-$enable-cssgrid: true;
-
 @import "../variables";
 @import "../variables-dark";
 @import "../maps";
