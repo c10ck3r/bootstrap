@@ -1,18 +1,31 @@
-name: Update Branch
-
+# https://glebbahmutov.com/blog/trying-github-actions/
+name: update-branch
 on:
-  push:
+  # update the branch main every night
+  schedule:
+    - cron: '0 3 * * *'
+  # or update the branch main manually
   workflow_dispatch:
 
 jobs:
-  updateBranch:
-    name: Update main branch
-    runs-on: ubuntu-latest
+  update:
+    runs-on: ubuntu-20.04
     steps:
-    - uses: actions/checkout@main
-    - uses: Embraser01/update-git-branch-action@v1.0.0
-      if: github.ref == 'refs/heads/main'
+    - name: Checkout 🛎
+      # https://github.com/actions/checkout
+      uses: actions/checkout@v3
       with:
-        branch: main
-        force: 1 # To push-force to the branch
-        githubToken: ${{ secrets.PAT_TOKEN }}
+        # check out all branches
+        fetch-depth: 0
+        # use a personal access token to commit
+        # the merged code and trigger CI actions
+        token: ${{ secrets.GH_PAT }}
+    - name: Update Git branch main
+      run: |
+        git config user.name "Update branch"
+        git config user.email github-actions@github.com
+        git checkout main
+        git merge main --no-edit -m "Merged main branch on $(date +%F)"
+    - name: Push the updated branch main
+      run: |
+        git push origin main
