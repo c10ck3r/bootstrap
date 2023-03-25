@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@main
-    - uses: Embraser01/update-git-branch-action@v1
+    - uses: Embraser01/update-git-branch-action@v1.0.0
       if: github.ref == 'refs/heads/master'
       with:
         branch: main
