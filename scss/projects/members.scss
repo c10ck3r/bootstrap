@@ -53,3 +53,18 @@ $enable-cssgrid: true;
 // Utilities
 @import "../utilities/api";
 // scss-docs-end import-stack
+
+// WordPress
+header.navbar {
+  .menu-item-has-children {
+    @extend .dropdown;
+  }
+
+  .menu-item > a {
+    @extend .nav-link;
+  }
+
+  .sub-menu {
+    @extend .dropdown-menu;
+  }
+}

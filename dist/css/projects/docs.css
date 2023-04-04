@@ -506,7 +506,12 @@
 }
 .bd-navbar .navbar-brand {
   color: #fff;
-  transition: 0.2s ease-in-out transform;
+  transition: transform 0.2s ease-in-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .bd-navbar .navbar-brand {
+    transition: none;
+  }
 }
 .bd-navbar .navbar-brand:hover {
   transform: rotate(-5deg) scale(1.1);
@@ -740,6 +745,7 @@
   background-image: linear-gradient(180deg, rgba(var(--bs-body-bg-rgb), 0.01), rgba(var(--bs-body-bg-rgb), 1) 85%), radial-gradient(ellipse at top left, rgba(var(--bs-primary-rgb), 0.5), transparent 50%), radial-gradient(ellipse at top right, rgba(var(--bd-accent-rgb), 0.5), transparent 50%), radial-gradient(ellipse at center right, rgba(var(--bd-violet-rgb), 0.5), transparent 50%), radial-gradient(ellipse at center left, rgba(var(--bd-pink-rgb), 0.5), transparent 50%);
 }
 .bd-masthead h1 {
+  --bs-heading-color: var(--bs-emphasis-color);
   font-size: calc(1.525rem + 3.3vw);
 }
 @media (min-width: 1200px) {
@@ -770,9 +776,16 @@
     padding-right: 4rem;
   }
 }
+.bd-masthead .highlight pre {
+  padding: 0;
+  margin-top: 0.625rem;
+  margin-right: 1.875rem;
+  margin-bottom: 0.625rem;
+  overflow: hidden;
+}
 .bd-masthead .btn-clipboard {
   position: absolute;
-  top: -0.125rem;
+  top: -0.625rem;
   right: 0;
   background-color: transparent;
 }
@@ -790,6 +803,11 @@
   }
 }
 
+.masthead-followup h2,
+.masthead-followup h3,
+.masthead-followup h4 {
+  --bs-heading-color: var(--bs-emphasis-color);
+}
 .masthead-followup .lead {
   font-size: 1rem;
 }
@@ -820,7 +838,12 @@
 }
 
 .animate-img > img {
-  transition: 0.2s ease-in-out transform;
+  transition: transform 0.2s ease-in-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-img > img {
+    transition: none;
+  }
 }
 .animate-img:hover > img {
   transform: scale(1.1);
@@ -863,10 +886,6 @@
   color: var(--bs-body-color) !important;
 }
 
-.bd-content > :target {
-  padding-top: 5rem;
-  margin-top: -5rem;
-}
 .bd-content > h2,
 .bd-content > h3,
 .bd-content > h4 {
@@ -1552,10 +1571,11 @@
   }
 }
 .highlight pre {
-  padding: 0;
-  margin-top: 0.625rem;
+  padding: 0.25rem 0 0.875rem;
+  margin-top: 0.8125rem;
   margin-right: 1.875rem;
-  margin-bottom: 0.625rem;
+  margin-bottom: 0;
+  overflow: overlay;
   white-space: pre;
   background-color: transparent;
   border: 0;
@@ -1593,11 +1613,6 @@
 .bd-scss-docs .highlight-toolbar {
   border-top-left-radius: calc(var(--bs-border-radius) + 1px);
   border-top-right-radius: calc(var(--bs-border-radius) + 1px);
-}
-
-.focused {
-  outline: 0;
-  box-shadow: var(--bs-focus-ring-offset), var(--bs-focus-ring-x, 0) var(--bs-focus-ring-y, 0) var(--bs-focus-ring-blur) var(--bs-focus-ring-width) var(--bs-focus-ring-color);
 }
 
 .btn-bd-primary {
@@ -2560,7 +2575,7 @@
 .btn-clipboard {
   position: relative;
   z-index: 2;
-  margin-top: 0.75rem;
+  margin-top: 1.25rem;
   margin-right: 0.75rem;
 }
 
@@ -2581,8 +2596,14 @@
   }
 }
 
-main *:focus {
-  scroll-margin-top: 100px;
+main a,
+main button,
+main h2,
+main h3,
+main h4,
+main [tabindex="0"] {
+  scroll-margin-top: 80px;
+  scroll-margin-bottom: 100px;
 }
 
 :root,
