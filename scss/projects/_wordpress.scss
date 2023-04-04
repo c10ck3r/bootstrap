@@ -1,0 +1,17 @@
+header.navbar {
+	.menu-item-has-children {
+		@extend .dropdown;
+	}
+
+	.menu-item > a {
+		@extend .nav-link;
+	}
+
+	.sub-menu {
+		@extend .dropdown-menu;
+
+		a {
+			@extend .dropdown-item;
+		}
+	}
+}
